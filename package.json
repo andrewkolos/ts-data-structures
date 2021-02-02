@@ -11,7 +11,7 @@
     "quick": "npm run clean && npm run build && npm run start",
     "build": "npm run clean && tsc && tsc --m commonjs --outDir build/cjs/ --declaration false",
     "build:watch": "npm run clean && tsc -w && tsc --outDir build/cjs --m commonjs --declaraton false",
-    "test": "jest --verbose",
+    "test": "jest --clearCache && jest --verbose --runInBand",
     "test:watch": "jest --watch",
     "test:debug": "node --inspect-brk=0.0.0.0 node_modules/jest/bin/jest.js --runInBand --config jest.config.js",
     "publish": "npm run build && npm publish --access=public"
