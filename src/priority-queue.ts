@@ -7,6 +7,10 @@ export class PriorityQueue<T> {
   private readonly data: T[] = [];
   private readonly comparator: (a: T, o: T) => number;
 
+  public get size(): number {
+    return this.data.length;
+  }
+
   public constructor(comparator?: (a: T, o: T) => number) {
     this.comparator = comparator ? comparator :
       (a: T, o: T) => {
@@ -55,7 +59,7 @@ export class PriorityQueue<T> {
       if (this.data[i] !== item) continue;
 
       const end = this.data.pop();
-      if (i === length - 1) break;
+      if (i === this.data.length - 1) break;
 
       this.data[i] = end!;
       this.bubbleUp(i);
@@ -65,8 +69,12 @@ export class PriorityQueue<T> {
     }
   }
 
-  public size(): number {
-    return this.data.length;
+  public toArray(): T[] {
+    const result: T[] = [];
+    while (!this.isEmpty()) {
+      result.push(this.pop()!);
+    }
+    return result;
   }
 
   private bubbleUp(index: number): void {
