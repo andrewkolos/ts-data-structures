@@ -1,6 +1,6 @@
 class TrieNode {
 
-  private readonly _children = new Map<String, TrieNode>();
+  private readonly _children = new Map<string, TrieNode>();
 
   public isEndOfWord: boolean = false;
 
@@ -28,6 +28,13 @@ class TrieNode {
 
 }
 
+/**
+ * Provides fast lookup for a set of strings. O(k), where k is the length of the search string.
+ * Compared to a hash table, the Trie has a faster worse case thanks to the lack of collisions that
+ * can occur in a hash table. The trie can require more memory than a hash table since space needs
+ * to be allocated for node references (rather than having a contiguous array). This can also make it
+ * slower than a hashtable with a decently distributed dataset as the CPU caches memory in blocks.
+ */
 export class Trie {
   private readonly root = new TrieNode();
 
